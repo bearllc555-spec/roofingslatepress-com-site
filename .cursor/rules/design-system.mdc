@@ -1,0 +1,53 @@
+---
+description: Roofing SlatePress visual language - canonical brand tokens for roofingslatepress-com-site
+globs: ["**/*.css", "**/*.html"]
+---
+
+# Roofing SlatePress design system (roofingslatepress-com-site repo)
+
+This rule encodes the canonical brand tokens for **roofingslatepress.com**. It is a Phase-1 splash placement page in the SlatePress portfolio - same minimal token set shared across all vertical splash pages, so when they graduate to full landers (or get rolled into a vertical-specific full design pass), the design system is already in place.
+
+The source of truth for these tokens is the `:root` block at the top of `index.html`. If they ever drift, this rule should be updated to match - the live file wins.
+
+## Canonical tokens (splash-tier set)
+
+```css
+:root{
+  --bg:#FFFFFF;             /* page canvas - pure white */
+  --ink:#0A0A0A;            /* primary text, near-black */
+  --ink-soft:#3A3D42;       /* secondary text */
+  --slate:#6B6A73;          /* tertiary text */
+  --rule:#E5E7EB;           /* default 1px borders */
+  --blue:#2563EB;           /* PRIMARY brand blue - logo "/" + primary CTAs */
+  --blue-deep:#1D4ED8;      /* hover state */
+  --blue-soft:#EFF3FF;      /* tinted backgrounds, badges */
+}
+```
+
+## Type stack
+
+**Inter only.** Single sans-serif throughout.
+
+```css
+font-family: 'Inter', -apple-system, system-ui, sans-serif;
+```
+
+## Cardinal rules for roofingslatepress-com-site
+
+- **Pure white canvas (`--bg #FFFFFF`).** Splash placement pages are quiet and minimal - they're a placeholder until the vertical graduates. Don't add gradient backgrounds, hero imagery, or paper tints unless promoting this site to a full lander.
+- **Brand blue (`--blue` #2563EB) is the one accent.** Logo `/`, primary CTAs, focus rings, at most one emphasis moment per viewport.
+- **Splash content only.** This site exists to (a) hold the domain, (b) present a coming-soon / waitlist message, (c) capture interest if any. Multi-section landers with services/pricing/comparison/founders bands belong in the full-lander tier (see `plumbingslatepress-com-site` for the full template), not here.
+- **No new hex codes.** Stick to the 8-token set above. If a real product launch is happening on this domain, raise the design-system question first - probably means promoting to a full-lander token set (paper tints + extended type), not adding ad-hoc hexes here.
+- **No gradient buttons, no carousels, no Lorem ipsum, no emoji in production UI.**
+
+## When designing or reviewing UI in this repo
+
+Defer to the `premium-web-designer` Claude skill. When it fires:
+1. Ask "What are we designing today?"
+2. On the answer "roofingslatepress.com" or any edit in this repo, load the tokens above.
+3. Apply universal taste principles on top.
+4. Produce code that references the brand's variable names (`--blue`, `--ink`, `--bg`) directly - never invent token names.
+
+## Promoting to a full lander
+
+When this domain graduates from splash-tier to full lander (i.e., the trade vertical lights up and gets its own paid pricing card, services pages, comparison tables, etc.), the design-system tokens need to expand from this 8-token set to the full lander set. See `plumbingslatepress-com-site/.cursor/rules/design-system.mdc` for the canonical full-lander template (paper-tinted bg variants, --max width, additional rule strokes, blue-bright variant). Don't shortcut by adding ad-hoc hexes to the splash set - rebuild the `:root` block from the full template.
